@@ -1,8 +1,13 @@
 python -m venv venv
 
+
+ - MAC
 source venv/bin/activate
+- WINDOWS
+venv\Scripts\activate.bat
 
 copia arquivo requirements.txt modelo da pasta
+
 pip install -r requirements.txt
 
 django-admin.py startproject projd .
@@ -10,6 +15,10 @@ django-admin.py startproject projd .
 django-admin.py startapp core
 
 adiciona projd e core em  settings.py  -->> INSTALLED_APPS 
+
+python manage.py makemigrations projd
+python manage.py migrate
+
 
 python manage.py createsuperuser
     admin / email / senha
