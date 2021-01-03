@@ -1,0 +1,78 @@
+python -m venv venv
+
+source venv/bin/activate
+
+copia arquivo requirements.txt modelo da pasta
+pip install -r requirements.txt
+
+django-admin.py startproject projd .
+
+django-admin.py startapp core
+
+adiciona projd e core em  settings.py  -->> INSTALLED_APPS 
+
+python manage.py createsuperuser
+    admin / email / senha
+
+edita Admin.py do app CORE para incluir os models
+    from proj.models import Dimdata, Dimlocal
+
+    admin.site.register(Dimdata)
+    admin.site.register(Dimdata)
+
+
+cria pasta de TEMPLATES
+
+    core
+        └── templates
+           ├── core
+           │   ├── _layouts
+           │   │   └── base.html
+           │   ├── index.html
+           └── registration
+                ├── logged_out.html
+                ├── login.html
+                ├── password_reset_complete.html
+                ├── password_reset_confirm.html
+                ├── password_reset_done.html
+                └── password_reset_form.html
+
+cria pasta de STATIC
+    core
+       └── static
+           └── core
+                    ├── css
+                    │   ├── bootstrap-grid.css
+                    │   ├── bootstrap-grid.css.map
+                    │   ├── bootstrap-grid.min.css
+                    │   ├── bootstrap-grid.min.css.map
+                    │   ├── bootstrap-reboot.css
+                    │   ├── bootstrap-reboot.css.map
+                    │   ├── bootstrap-reboot.min.css
+                    │   ├── bootstrap-reboot.min.css.map
+                    │   ├── bootstrap.css
+                    │   ├── bootstrap.css.map
+                    │   ├── bootstrap.min.css
+                    │   └── bootstrap.min.css.map
+                    ├── img
+                    │   └── favicon.ico
+                    ├── jquery
+                    │   ├── jquery.js
+                    │   ├── jquery.min.js
+                    │   ├── jquery.min.map
+                    │   ├── jquery.slim.js
+                    │   ├── jquery.slim.min.js
+                    │   └── jquery.slim.min.map
+                    └── js
+                        ├── bootstrap.bundle.js
+                        ├── bootstrap.bundle.js.map
+                        ├── bootstrap.bundle.min.js
+                        ├── bootstrap.bundle.min.js.map
+                        ├── bootstrap.js
+                        ├── bootstrap.js.map
+                        ├── bootstrap.min.js
+                        └── bootstrap.min.js.map
+
+substitui arquivo views.py pelo arquivo da pasta
+
+substitui arquivos urls.py do projd e do core

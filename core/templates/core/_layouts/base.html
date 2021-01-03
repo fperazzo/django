@@ -1,0 +1,73 @@
+<!doctype html>
+{% load static %}
+
+<html lang="PT-BR" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Fernando Antonio Pedreira Perazzo">
+    <meta name="generator" content="Jekyll v4.0.1">
+    <title>Orçamentos</title>
+
+       <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="{%static 'core/css/bootstrap.min.css' %}">
+  </head>
+
+  <!-- Fixed navbar -->
+  
+  <body class="d-flex flex-column h-100">
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #1b7a2d;">
+      <div class="container">
+      <a class="navbar-brand" href="{% url 'core:index' %}">
+      <img src="{%static 'core/img/favicon.ico' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">rçamentos
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'core:index' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'core:lista_orc_chave' %}">Meus Orçamentos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'core:pt1' %}">Novo</a>
+            </li>
+
+        </div>
+      </div>
+    </nav>
+    </header>
+
+<!-- Begin page content -->
+  <main role="main" class="flex-shrink-0">
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+  {% block conteudo %}{% endblock %}
+  </main>
+
+  <footer class="footer mt-auto py-3">
+    <div class="container" style="text-align: center;">
+      <span class="text-muted">
+        {% if user.is_authenticated %}Logado como: {{ user.get_username }} 
+        <a href="{% url 'logout'%}?next={{request.path}}"> Sair</a>
+        {% else %}
+        <a href="{% url 'login'%}?next={{request.path}}">Fazer Login</a>
+        {% endif %}
+          - Em caso de dúvidas: fernando_perazzo@yahoo.com.br
+    </span>
+    </div>
+  </footer>
+
+  <script src="{% static 'core/js/bootstrap.bundle.min.js' %}"></script>
+    {% block scripts %}{% endblock scripts%}
+
+  </body>
+</html>

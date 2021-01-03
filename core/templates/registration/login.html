@@ -1,0 +1,42 @@
+{% extends "core/_layouts/base.html" %}
+
+{% block conteudo %}
+
+
+ <div class="container mt-5">
+       <h2><center>Faça login</center></h2> 
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <table>
+      <tr>
+        <td>{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+      </tr>
+      <tr>
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+      </tr>
+    </table>
+    <input type="submit" value="login" />
+    <input type="hidden" name="next" value="{% url 'core:lista_orc_chave' %}"/>
+<br>
+<br>
+  {% if form.errors %}
+      <p style="color: #f00;">Your username and password didn't match. Please try again.</p>
+  {% endif %}
+  
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p style="color: #f00;">Your account doesn't have access to this page. To proceed,
+      please login with an account that has access.</p>
+    {% else %}
+      <p style="color: #f00;">Please login to see this page.</p>
+    {% endif %}
+  {% endif %}
+  </form>
+  
+  {# Assumes you setup the password_reset view in your URLconf #}
+  <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+  
+</div>  
+{% endblock %}

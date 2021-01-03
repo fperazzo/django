@@ -1,0 +1,11 @@
+{% extends "core/_layouts/base.html" %}
+
+{% block conteudo %}
+
+ <div class="container mt-5">
+      <h2><center>Logged out!</center></h2> 
+ 
+  <a href="{% url 'login'%}">Click here to login again.</a>
+  
+</div>  
+{% endblock %}
